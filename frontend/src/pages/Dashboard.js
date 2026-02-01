@@ -7,7 +7,7 @@ import { Input } from '../components/ui/input';
 import { Mic, MicOff, LogOut, User, DollarSign, ArrowUpRight, ArrowDownLeft, Receipt } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
-import { AudioRecorder } from 'react-audio-voice-recorder';
+import VoiceRecorder from '../components/VoiceRecorder';
 
 const Dashboard = ({ token, userName, onLogout }) => {
   const [account, setAccount] = useState(null);
