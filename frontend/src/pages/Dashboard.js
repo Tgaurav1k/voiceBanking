@@ -248,14 +248,7 @@ const Dashboard = ({ token, userName, onLogout }) => {
                 </p>
                 
                 <div className="flex justify-center">
-                  <AudioRecorder 
-                    onRecordingComplete={handleAudioRecording}
-                    audioTrackConstraints={{
-                      noiseSuppression: true,
-                      echoCancellation: true,
-                    }}
-                    downloadFileExtension="webm"
-                  />
+                  <VoiceRecorder onRecordingComplete={handleAudioRecording} />
                 </div>
                 
                 {transcript && (
