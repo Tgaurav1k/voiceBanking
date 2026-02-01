@@ -255,7 +255,7 @@ class VoiceBankingAPITester:
 
     def test_voice_transcription(self):
         """Test voice transcription endpoint"""
-        # Create a dummy audio file for testing
+        # Test with invalid audio to check error handling
         try:
             with tempfile.NamedTemporaryFile(suffix='.webm', delete=False) as temp_file:
                 # Write minimal webm header (this won't actually work for real transcription)
@@ -264,26 +264,31 @@ class VoiceBankingAPITester:
             
             with open(temp_file_path, 'rb') as f:
                 files = {'file': ('test.webm', f, 'audio/webm')}
-                success, response = self.run_test(
-                    "Voice Transcription",
-                    "POST",
-                    "voice/transcribe",
-                    500,  # Expect 500 due to invalid audio data
-                    files=files
-                )
+                url = f"{self.base_url}/api/voice/transcribe"
+                response = requests.post(url, files=files)
             
             os.unlink(temp_file_path)
             
-            # For this test, we expect it to fail with invalid audio, so 500 is expected
-            if response and 'Transcription failed' in str(response):
-                self.log_test(
-                    "Voice Transcription Error Handling",
-                    True,
-                    "Correctly handled invalid audio file"
-                )
-                return True
+            # We expect this to fail with 500 due to invalid audio data
+            if response.status_code == 500:
+                try:
+                    error_data = response.json()
+                    if 'Transcription failed' in error_data.get('detail', ''):
+                        self.log_test(
+                            "Voice Transcription Error Handling",
+                            True,
+                            "Correctly handled invalid audio file with proper error message"
+                        )
+                        return True
+                except:
+                    pass
             
-            return success
+            self.log_test(
+                "Voice Transcription", 
+                False, 
+                f"Status: {response.status_code}, Response: {response.text[:100]}"
+            )
+            return False
             
         except Exception as e:
             self.log_test("Voice Transcription", False, f"Exception: {str(e)}")
