@@ -1,0 +1,129 @@
+{
+  "summary": {
+    "passed": 16,
+    "total": 20,
+    "success_rate": "80.0%"
+  },
+  "results": [
+    {
+      "test": "Root Endpoint",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"message\": \"Voice Banking API\"\n}...",
+      "timestamp": "2026-02-01T08:05:49.390006"
+    },
+    {
+      "test": "User Registration",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYTVhYjJhNjktMDFiYy00Mjg5LWFhYzUtM2ZjMjBlNDNkZmRhIiwiZXhwIjoxNzcwMDE5NTUwfQ.p5wb2dVUPC5XIFq9VLirSVfgq0BWDM3rIpH4hyAAcIc\",\n  \"user_id\":...",
+      "timestamp": "2026-02-01T08:05:50.451239"
+    },
+    {
+      "test": "User Login",
+      "success": false,
+      "details": "Status: 401, Error: Invalid credentials",
+      "timestamp": "2026-02-01T08:05:51.262467"
+    },
+    {
+      "test": "Get Account",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"account_id\": \"ae4207b9-494c-43eb-bfc7-7e86026e6aeb\",\n  \"account_number\": \"ACC20253BCB\",\n  \"balance\": 10000.0,\n  \"account_type\": \"savings\"\n}...",
+      "timestamp": "2026-02-01T08:05:52.057019"
+    },
+    {
+      "test": "Intent Recognition - check my balance...",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"intent\": \"check_balance\",\n  \"confidence\": 0.9,\n  \"entities\": {}\n}...",
+      "timestamp": "2026-02-01T08:05:52.850614"
+    },
+    {
+      "test": "Intent Accuracy - check my balance...",
+      "success": true,
+      "details": "Correctly identified as check_balance",
+      "timestamp": "2026-02-01T08:05:52.854226"
+    },
+    {
+      "test": "Intent Recognition - transfer money...",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"intent\": \"transfer_money\",\n  \"confidence\": 0.9,\n  \"entities\": {}\n}...",
+      "timestamp": "2026-02-01T08:05:53.489369"
+    },
+    {
+      "test": "Intent Accuracy - transfer money...",
+      "success": true,
+      "details": "Correctly identified as transfer_money",
+      "timestamp": "2026-02-01T08:05:53.490030"
+    },
+    {
+      "test": "Intent Recognition - pay electricity bill...",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"intent\": \"pay_bill\",\n  \"confidence\": 0.9,\n  \"entities\": {}\n}...",
+      "timestamp": "2026-02-01T08:05:54.901461"
+    },
+    {
+      "test": "Intent Accuracy - pay electricity bill...",
+      "success": true,
+      "details": "Correctly identified as pay_bill",
+      "timestamp": "2026-02-01T08:05:54.902215"
+    },
+    {
+      "test": "Intent Recognition - show my transactions...",
+      "success": false,
+      "details": "Status: 520, Error: Web server returned an unknown error\n",
+      "timestamp": "2026-02-01T08:05:55.245846"
+    },
+    {
+      "test": "Intent Recognition - help me...",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"intent\": \"help\",\n  \"confidence\": 0.9,\n  \"entities\": {}\n}...",
+      "timestamp": "2026-02-01T08:05:56.066637"
+    },
+    {
+      "test": "Intent Accuracy - help me...",
+      "success": true,
+      "details": "Correctly identified as help",
+      "timestamp": "2026-02-01T08:05:56.067279"
+    },
+    {
+      "test": "Voice Transcription",
+      "success": false,
+      "details": "Status: 520, Error: Transcription failed: Failed to transcribe audio: litellm.BadRequestError: OpenAIException - litellm.BadRequestError: OpenAIException - Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']. Received Model Group=whisper-1\nAvailable Model Group Fallbacks=None",
+      "timestamp": "2026-02-01T08:06:02.989170"
+    },
+    {
+      "test": "Speech Synthesis",
+      "success": true,
+      "details": "Status: 200, Response: b'\\xff\\xf3\\xe4\\xc4\\x00e<:\\x10\\x03Y\\xd0\\x00\\n\\xecT\\x89\\x88\\x91\\x0b\\x12\\x04\\x80\\xd4\\r\"\\xcb\\xc0\\\\\\x82\\x...",
+      "timestamp": "2026-02-01T08:06:05.904254"
+    },
+    {
+      "test": "Speech Synthesis",
+      "success": false,
+      "details": "Exception: Expecting value: line 1 column 1 (char 0)",
+      "timestamp": "2026-02-01T08:06:05.905791"
+    },
+    {
+      "test": "Create Recipient User",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODNkYmVhNDgtNTlhZS00OTc5LWEzZWEtMTJiYTc5NzA5ZjQ0IiwiZXhwIjoxNzcwMDE5NTY2fQ.6rg53elJerPdo1W5GerqHb5BS8_12Enw2GPrUxrteno\",\n  \"user_id\":...",
+      "timestamp": "2026-02-01T08:06:06.933723"
+    },
+    {
+      "test": "Transfer Money",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"transaction_id\": \"a4f999b1-7423-445a-8b4a-82686ebc74be\",\n  \"type\": \"debit\",\n  \"amount\": 100.0,\n  \"recipient\": \"Recipient 080605\",\n  \"description\": \"Test transfer\",\n  \"timestamp\": \"2026-02-01T08:0...",
+      "timestamp": "2026-02-01T08:06:07.560963"
+    },
+    {
+      "test": "Bill Payment",
+      "success": true,
+      "details": "Status: 200, Response: {\n  \"transaction_id\": \"7b771594-ed32-4380-b533-abe78c05ec6c\",\n  \"type\": \"debit\",\n  \"amount\": 50.0,\n  \"recipient\": \"Electricity\",\n  \"description\": \"Monthly electricity bill\",\n  \"timestamp\": \"2026-02-01...",
+      "timestamp": "2026-02-01T08:06:08.379023"
+    },
+    {
+      "test": "Get Transactions",
+      "success": true,
+      "details": "Status: 200, Response: [\n  {\n    \"transaction_id\": \"7b771594-ed32-4380-b533-abe78c05ec6c\",\n    \"type\": \"debit\",\n    \"amount\": 50.0,\n    \"recipient\": \"Electricity\",\n    \"description\": \"Monthly electricity bill\",\n    \"timesta...",
+      "timestamp": "2026-02-01T08:06:09.245798"
+    }
+  ]
+}
