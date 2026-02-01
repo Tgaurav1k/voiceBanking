@@ -107,14 +107,31 @@ class VoiceBankingAPITester:
 
     def test_user_login(self):
         """Test user login with existing credentials"""
-        if not self.token:
+        # Create a new user specifically for login test
+        timestamp = datetime.now().strftime('%H%M%S')
+        test_data = {
+            "name": f"Login Test User {timestamp}",
+            "phone": f"777{timestamp}",
+            "pin": "9876",
+            "language_preference": "en"
+        }
+        
+        # Register user first
+        success, response = self.run_test(
+            "Register User for Login Test", 
+            "POST", 
+            "auth/register", 
+            200, 
+            data=test_data
+        )
+        
+        if not success:
             return False
             
-        # Extract phone from registration for login test
-        timestamp = datetime.now().strftime('%H%M%S')
+        # Now test login with same credentials
         login_data = {
-            "phone": f"555{timestamp}",
-            "pin": "1234"
+            "phone": f"777{timestamp}",
+            "pin": "9876"
         }
         
         success, response = self.run_test(
