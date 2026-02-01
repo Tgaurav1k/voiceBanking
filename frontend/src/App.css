@@ -1,34 +1,55 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.App {
+  min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.App-link {
-    color: #61dafb;
+button {
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.audio-recorder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audio-recorder-mic {
+  width: 80px !important;
+  height: 80px !important;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s;
+}
+
+.audio-recorder-mic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+}
+
+.audio-recorder-status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #6b7280;
 }
