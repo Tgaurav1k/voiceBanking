@@ -291,15 +291,29 @@ class VoiceBankingAPITester:
 
     def test_speech_synthesis(self):
         """Test speech synthesis endpoint"""
-        success, response = self.run_test(
-            "Speech Synthesis",
-            "POST",
-            "voice/synthesize",
-            200,
-            params={"text": "Hello, this is a test", "voice": "nova"}
-        )
-        
-        return success
+        try:
+            url = f"{self.base_url}/api/voice/synthesize"
+            params = {"text": "Hello, this is a test", "voice": "nova"}
+            
+            response = requests.post(url, params=params)
+            
+            success = response.status_code == 200
+            if success:
+                # Check if we got audio data
+                content_type = response.headers.get('content-type', '')
+                if 'audio' in content_type:
+                    details = f"Status: {response.status_code}, Content-Type: {content_type}, Size: {len(response.content)} bytes"
+                else:
+                    details = f"Status: {response.status_code}, Unexpected content type: {content_type}"
+            else:
+                details = f"Status: {response.status_code}, Error: {response.text[:100]}"
+            
+            self.log_test("Speech Synthesis", success, details)
+            return success
+            
+        except Exception as e:
+            self.log_test("Speech Synthesis", False, f"Exception: {str(e)}")
+            return False
 
     def run_all_tests(self):
         """Run all tests in sequence"""
